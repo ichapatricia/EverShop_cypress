@@ -2,5 +2,9 @@
     "invalidLogin":{
         "email": "testinvalid@gmail.com",
         "password": "123456"
+    },
+    "validLogin":{
+        "email":"123@gmail.com",
+        "password":"password123"
     }
 }

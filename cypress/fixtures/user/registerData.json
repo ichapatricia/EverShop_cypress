@@ -3,6 +3,16 @@
         "fullname": "Testing User",
         "email": "automationtest123@gmail.com",
         "password": "123456"
+    },
+    "duplicateEmail":{
+        "fullname": "Dummy1",
+        "email": "123@gmail.com",
+        "password": "password123"
+    },
+    "shortPassword":{
+        "fullname": "Dummy2",
+        "email": "1234@gmail.com",
+        "password": "pas1" 
     }
     
 }

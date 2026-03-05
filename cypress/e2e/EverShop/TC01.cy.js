@@ -82,7 +82,7 @@ describe("UI Component, Register, Filter",()=>{
     })
 
 //====TC01007 , TC01008 , TC01010: Check Filter Warna , Price , Kombinasi Price & Color di Accesories===//
-    context.only(" TC01006 & TC01007",()=>{
+    context(" TC01006 & TC01007",()=>{
         beforeEach(()=>{
             homePage.visitHome()
             homePage.clickShopNow()

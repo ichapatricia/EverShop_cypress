@@ -1,0 +1,12 @@
+{
+  "shippingAddress": {
+    "fullName": "Dummy User",
+    "address": "123 Main Street",
+    "city": "Seattle",
+    "province": "Washington",
+    "postcode": "98101",
+    "country": "United States",
+    "phone": "08123456789"
+  },
+  "coupon": "COUPON001"
+}

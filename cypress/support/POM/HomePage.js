@@ -50,5 +50,20 @@ class HomePage{
     // clickPrice(){
 
     // }
+
+    clickCreateAccount(){
+        cy.contains('Create an account').click()
+    }
+
+    clickLogin(){
+        cy.contains('Sign In').click()
+    }
+
+    selectProduct(){
+        cy.get('.product-item').first().click()
+    }
+    // openCart(){
+    //     cy.get('[data-testid="cart-icon"]').click()
+    // }
 }
 export default HomePage
