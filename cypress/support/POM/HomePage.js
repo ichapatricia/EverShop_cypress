@@ -56,14 +56,14 @@ class HomePage{
     }
 
     clickLogin(){
-        cy.contains('Sign In').click()
+        cy.get('.header-user-icon, .user-icon, a[href*="/login"]').first().click({force: true})
     }
 
     selectProduct(){
-        cy.get('.product-item').first().click()
+        cy.get('a[href*="/products/"]', { timeout: 10000 }).first().should('be.visible').click({force: true})
     }
-    // openCart(){
-    //     cy.get('[data-testid="cart-icon"]').click()
-    // }
+    openCart(){
+        cy.get('[data-testid="cart-icon"]').click()
+    }
 }
 export default HomePage

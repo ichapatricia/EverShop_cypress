@@ -19,7 +19,7 @@ describe("UI Component, Register, Filter",()=>{
         cy.fixture('user/loginData').then((data) =>{
             invLogin = data
         })
-        cy.fixture('user/RegisterData').then((data)=>{
+        cy.fixture('user/registerData').then((data)=>{
             valRegis = data
         })
     })
