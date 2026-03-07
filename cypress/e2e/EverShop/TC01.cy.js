@@ -1,10 +1,10 @@
 import HomePage from "../../support/POM/HomePage"
-import LoginPage from "../../support/POM/LoginPage"
+import Login from "../../support/POM/Login"
 import RegisterPage from "../../support/POM/RegisterPage"
 import FilterFeature from "../../support/POM/FilterFeature"
 
 
-const loginPage = new LoginPage()
+const loginPage = new Login()
 const registerPage = new RegisterPage()
 const homePage = new HomePage()
 const filter = new FilterFeature()
@@ -25,9 +25,9 @@ describe("UI Component, Register, Filter",()=>{
     })
 //====TC01001 : Unregistered user try to Login===//
     it("TC01001-Unregistered user try to Login",()=>{
-        loginPage.visit()
-        loginPage.inputEmail(invLogin.invalidLogin.email)
-        loginPage.inputPassword(invLogin.invalidLogin.password)
+        loginPage.visitWebsite()
+        loginPage.fillInputEmail(invLogin[0].email)
+        loginPage.fillInputPassword(invLogin[0].password)
         loginPage.clickLogin()
         loginPage.verifyLoginError()
     })
@@ -77,7 +77,7 @@ describe("UI Component, Register, Filter",()=>{
         homePage.visitHome()
         homePage.clickShopMen()
         homePage.visitHome()
-        homePage.clickProductName() // ceramic-coffee-cup-yellow
+        homePage.clickProductName() // Stainless Steel - Yellow
         homePage.visitHome()
     })
 
@@ -105,7 +105,7 @@ describe("UI Component, Register, Filter",()=>{
                 //Assertion product exist
                 cy.get('img')
             .should("have.attr", "src")
-            .and("include", "cup-black") // Sesuai nama product 'cup-black'
+            .and("include", "thermos-black") // Sesuai nama product 'cup-black'
         
                 // Tambahkan cek teks nama produk untuk lebih yakin
                 cy.contains('Ceramic Coffee Cup').should('be.visible')
@@ -113,17 +113,36 @@ describe("UI Component, Register, Filter",()=>{
         })
 
 //====TC01009: Check Filter Sort By di Accesories===//
-        // context(" Sorting Filter Skenario",()=>{
-        //     it("TC01009 - Filter Sort By",()=>{
+        // context.only(" TC01009 - Sorting Filter Skenario",()=>{
+        //     it("Sort by Price",()=>{
         //         // Sort By: Default, Price, Name
         //         filter.applySort("Price")
-        //         cy.contains('$').should('be.visible')
+        //         cy.get('.product-price')
+        //         .then(($prices)=>{
+        //             const prices = [...$prices].map(el=>
+        //                 Number(el.innerText.replace('$',''))
+        //             )
+        //             const sorted = [...prices].sort((a,b)=>a-b)
+        //             expect(prices).to.deep.equal(sorted)
+        //         })
+        //     })
+        //     it('Sort by Name',()=>{
+        //         filter.applySort("Name")
 
-        //         filter.applySort("Name") // A-Z
-        //         cy.get('img').first().should('be.visible')
+        //         cy.get('.product-name')
+        //             .then(($names) => {
+        //             const names = [...$names].map(el => el.innerText.trim())
+        //             const sorted = [...names].sort()
+        //             expect(names).to.deep.equal(sorted)
 
+        //         })
+        //     })
+        //     it('Sort by Default',()=>{
         //         filter.applySort("Default")
-        //         cy.get('img').should('be.visible')
+
+        //         cy.get('.product-name')
+        //             .first()
+        //             .should('contain','Stainless Steel Thermos')
         //     })
         // })
 

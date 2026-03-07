@@ -1,11 +1,11 @@
 import HomePage from "../../support/POM/HomePage"
 import RegisterPage from "../../support/POM/RegisterPage"
-import LoginPage from "../../support/POM/LoginPage"
+import Login from "../../support/POM/Login"
 
 
 const register = new RegisterPage()
 const home = new HomePage()
-const login = new LoginPage()
+const login = new Login()
 
 let logindata
 let duplRegis
@@ -54,15 +54,15 @@ describe("Checkout dengan Login",()=>{
         })
 //====TC02003 : Login- Email dan Password valid ===//
         it('TC02003 - Login valid',()=>{
-            login.inputEmail(logindata.validLogin.email)
-            login.inputPassword(logindata.validLogin.password)
+            login.fillInputEmail(logindata[1].email)
+            login.fillInputPassword(logindata[1].password)
             login.clickLogin()
             cy.url().should('include','https://demo.evershop.io/')
         })
 //====TC02004 :Login -  Email atau Password Invalid dan kedua field kosong ===//
-        it('TC02003 - Login invalid & empty field',()=>{
-            login.inputEmail(logindata.invalidLogin.email)
-            login.inputPassword(logindata.invalidLogin.password)
+        it('TC02004 - Login invalid & empty field',()=>{
+            login.fillInputEmail(logindata[0].email)
+            login.fillInputPassword(logindata[0].password)
             login.clickLogin()
             login.verifyLoginError()
             login.clearEmailField()
@@ -71,6 +71,9 @@ describe("Checkout dengan Login",()=>{
             cy.url().should('include','/login')
             login.errorRequired()
         })
-
+//====TC02004 :Login -  Email atau Password Invalid dan kedua field kosong ===//
+        it('TC02005 - Forgot Password',()=>{
+            login.forgorPwd()
+        })
     })
 })

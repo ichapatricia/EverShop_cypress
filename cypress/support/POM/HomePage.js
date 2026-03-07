@@ -32,19 +32,19 @@ class HomePage{
 
     clickShopKids(){
         cy.contains('Shop kids').click()
-        cy.url().should('include','/kids')
+        cy.url().should('include','/accessories') // 07/03/26 di url gada kid
     }
     clickShopWomen(){
         cy.contains('Shop women').click()
-        cy.url().should('include','/women')
+        cy.url().should('include','/accessories')
     }
     clickShopMen(){
         cy.contains('Shop men').click()
-        cy.url().should('include','/men')
+        cy.url().should('include','/accessories')
     }
     clickProductName(){
-        cy.contains('Ceramic Coffee Cup - Yellow').click()
-        cy.url().should('include','/accessories/ceramic-coffee-cup-yellow')
+        cy.contains('Stainless Steel Thermos - Yellow').click()
+        cy.url().should('include','/accessories/stainless-steel-thermos-yellow')
 
     }
     // clickPrice(){

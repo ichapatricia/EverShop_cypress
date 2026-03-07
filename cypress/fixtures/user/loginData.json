@@ -1,10 +1,13 @@
-{
-    "invalidLogin":{
+[
+  {     "skenario":"invalidLogin",
         "email": "testinvalid@gmail.com",
-        "password": "123456"
+        "password": "123456",
+        "success": false
     },
-    "validLogin":{
-        "email":"123@gmail.com",
-        "password":"password123"
+    {   "skenario": "validLogin",
+        "email":"username@gmail.com",
+        "password":"username1",
+        "success": true
     }
-}
+]
+  

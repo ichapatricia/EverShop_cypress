@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import{login} from "../support/POM/login";
+
+Cypress.Commands.add("Login",(email, password, success)=>{
+    cy.session([email,password],()=>{
+         //login.visit
+        login.visitWebsite();
+        login.fillInputEmail(email);
+        login.fillInputPassword(password);
+        login.clickButtonLoginCheckout(success);
+
+        cy.url().should('not.include','/login');
+    })
+   
+})

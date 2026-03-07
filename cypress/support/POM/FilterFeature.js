@@ -27,5 +27,11 @@ class FilterFeature{
 
     //     cy.wait(3000);
     // }
+
+    applySort(option){
+        cy.contains('Sort By').should('be.visible').click()
+        cy.wait(500)
+        cy.contains(option).should('be.visible').click()
+    }
 }
 export default FilterFeature
