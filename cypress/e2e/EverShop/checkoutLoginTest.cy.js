@@ -1,82 +1,120 @@
-// import { login } from "../../support/POM/login";
-// import { checkoutPage } from "../../support/POM/CheckoutPage";
+import { checkoutPage } from "../../support/POM/CheckoutPage";
 
 
 
 
 
-// //====TC02006 : Checkout - Order dengan Login & Fulfill all Requirements===//    
-// describe("TC02006 - User melakukan checkout dengan akun sudah Login",()=>{
-//     beforeEach(()=>{
-//         // login.visitWebsite()
-//         cy.fixture('user/loginData').then((users) =>{
-//                 // nama Custom Command 'Login'
-//                 cy.Login(users[1].email, users[1].password, users[1].success);
+//====TC02006 : Checkout - Order dengan Login & Fulfill all Requirements===//    
+describe("TC02006 - User melakukan checkout dengan akun sudah Login",()=>{
+    beforeEach(()=>{
+        // login.visitWebsite()
+        cy.fixture('user/loginData').then((users) =>{
+                // nama Custom Command 'Login'
+                cy.Login(users[1].email, users[1].password, users[1].success);
             
-//         });
-//         // cy.fixture('user/checkoutData').then((data)=>{
-//         //     checkOut = data
-//         // })
-//     })
-//     it("User melakukan checkout",()=>{
-//         checkoutPage.clickButtonUser();
-//         checkoutPage.clickButtonAddress(0);
+        })
+        cy.visit('https://demo.evershop.io/')
+    })
+   context("Login menggunakan session",()=>{
+        it("User melakukan checkout",()=>{
+            
+            cy.wait(2000)
 
-//         checkoutPage.inputFieldFullName();
-//         checkoutPage.inputFieldTelephone();
-//         checkoutPage.inputFieldAddress();
-//         checkoutPage.inputFieldCity();
-//         checkoutPage.inputFieldCountry('US');
-//         checkoutPage.inputFieldProvince('AL');
-//         checkoutPage.inputFieldPostCode();
+            //Pilih produk Modern Ceramic Vase - Green
+            cy.contains('Modern Ceramic Vase - Green')
+            .should("be.visible")
+            .click({ force: true });
+            cy.wait(2000)
 
-//         checkoutPage.clickButtonContinueShip();
-//         checkoutPage.clickButtonAddress(1);
+            //Pilih Warna
+            cy.get('.variant-option-list')
+            .contains('Green', { matchCase: false })
+            .should("be.visible")
+            .click({ force: true });
+            cy.wait(1000);
 
-//         checkoutPage.clickButtonHome();
-//         checkoutPage.clickButtonKids();
-//         checkoutPage.clickButtonFilter(2);
+            //input Quantity
+            checkoutPage.inputFieldQTY("10")
 
-//         checkoutPage.clickProduct1();
-//         checkoutPage.clickVarianSize(0);
-//         checkoutPage.clickVarianColour(0);
+            //klik ADD TO CART
+            cy.contains('ADD TO CART')
+            .should("be.visible")
+            .click();
+            cy.wait(5000);
 
-//         checkoutPage.clickFieldQTY();
-//         checkoutPage.inputFieldQTY("8");
-//         checkoutPage.clickAddToCart();
+            // Tunggu minicart muncul
+            cy.xpath("//*[local-name()='svg']");
 
-//         checkoutPage.clickContinueShopping();
+            //klik x untuk kembali ke home dan pilih barang lain
+            cy.get("button[data-slot='sheet-close']")
+                .should('be.visible')
+                .click()
+            cy.get("a[data-slot='breadcrumb-link']")
+                .contains('Home')
+                .click()
 
-//         checkoutPage.clickButtonHome();
-//         checkoutPage.clickButtonMen(2);
-//         checkoutPage.clickButtonFilter(10);
+            //Pilih produk Stainless Steel Thermos - Black
+            cy.contains('Stainless Steel Thermos - Black')
+            .should("be.visible")
+            .click({ force: true });
+            cy.wait(2000)
 
-//         checkoutPage.clickProduct2();
-//         checkoutPage.clickVarianSize(0);
-//         checkoutPage.clickVarianColour(1);
+            //Pilih Warna
+            cy.get('.variant-option-list')
+            .contains('Black', { matchCase: false })
+            .should("be.visible")
+            .click({ force: true });
+            cy.wait(1000);
 
-//         checkoutPage.clickFieldQTY();
-//         checkoutPage.inputFieldQTY();
-//         checkoutPage.clickAddToCart();
+            //Input Qty
+            // cy.get('input[name="qty"]')
+            // .should("be.visible")
+            // .clear()
+            // .type("2")
+            // .should('have.value', "30");
+            // cy.wait(1000);
+            checkoutPage.inputFieldQTY("10")
 
-//         checkoutPage.clickCartPopUp();
-//         checkoutPage.clickMinusQTY();
-//         checkoutPage.clickButtonRemove(0);
+            //klik ADD TO CART
+            cy.contains('ADD TO CART')
+            .should("be.visible")
+            .click();
+            cy.wait(5000);
 
-//         checkoutPage.clickButtonCheckout();
+            // Tunggu minicart muncul
+            cy.xpath("//*[local-name()='svg']");
 
-//         checkoutPage.clickButtonAddress(0);
-//         checkoutPage.clickButtonShippingMethod();
 
-//         checkoutPage.clickButtonContinueShip();
+            //klik Checkout
+           cy.contains('.minicart__viewcart__button','Checkout')
+            .click();
+            cy.wait(2000)
 
-//         checkoutPage.clickButtonPayment(0);
-//         checkoutPage.clickButtonSubmitPayment();
+            //===Isi data diri di halaman checkout===//
+            cy.url().should('include','checkout')
+            // checkoutPage.inputFieldEmail()
+            checkoutPage.inputFieldFullName()
+            checkoutPage.inputFieldTelephone()
+            checkoutPage.inputFieldAddress()
+            checkoutPage.inputFieldCity()
+            checkoutPage.inputFieldCountry("United States")
+            checkoutPage.inputFieldProvince("Alabama")
+            checkoutPage.inputFieldPostCode()
 
-//         checkoutPage.clickButtonContinueShip();
-//         checkoutPage.clickButtonUser();
+            //Shipping Method
+            checkoutPage.selectShippingMethod("Express") // 'Basic' atau ' Express'
+
+            // Billing address
+            checkoutPage.selectBillingSameAddress()
+            //Payment Method
+            checkoutPage.clickButtonPayment()
+
+            //Place Order
+            checkoutPage.clickButtonSubmitPayment()
+
+            
+        })
         
-        
-//     })
+    })
 
-// })
+})

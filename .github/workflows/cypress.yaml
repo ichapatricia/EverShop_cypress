@@ -72,7 +72,7 @@ jobs:
         if: always()
         with:
           name: cypress-results
-          path: cypress/results
+          path: cypress/report 
           if-no-files-found: ignore
 
       - name: Upload screenshots on failure
@@ -123,7 +123,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: cypress-results
-          path: cypress/results
+          path: cypress/report
 
       - name: Merge Mochawesome reports
         run: npm run merge:reports

@@ -36,6 +36,18 @@ class Login{
     clearPasswordField() {
         cy.get('input#field-password').clear()
     }
+     clickButtonLoginCheckout(success){
+
+        cy.contains('button','Sign In')
+        .click()
+
+        if(success){
+            cy.url().should('not.include','Sign In')
+        }else{
+            cy.url().should('include','Sign In')
+        }
+
+    }
 
     clickLogin(){
         cy.contains('button','Sign In').click()

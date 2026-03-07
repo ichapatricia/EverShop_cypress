@@ -24,7 +24,9 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import{login} from "../support/POM/login";
+import Login from "../support/POM/Login";
+
+const login = new Login ()
 
 Cypress.Commands.add("Login",(email, password, success)=>{
     cy.session([email,password],()=>{
@@ -34,7 +36,11 @@ Cypress.Commands.add("Login",(email, password, success)=>{
         login.fillInputPassword(password);
         login.clickButtonLoginCheckout(success);
 
-        cy.url().should('not.include','/login');
+        cy.url().should('not.include','/Sign In');
+    },{
+        validate(){
+            cy.url().should('not.include','/Sign In') // Jika session maish valid => gak perlu login lagi
+        }
     })
    
 })
