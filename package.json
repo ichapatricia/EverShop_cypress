@@ -5,12 +5,17 @@
   "devDependencies": {
     "@shelex/cypress-allure-plugin": "^2.41.2",
     "allure-commandline": "^2.37.0",
-    "cypress-xpath": "^2.0.1"
+    "cypress-xpath": "^2.0.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2"
   },
   "scripts": {
     "cy:run:allure": "cypress run --env allure=true",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open allure-report",
-    "allure:report": "npm run cy:run:allure && npm run allure:generate && npm run allure:open"
+    "allure:report": "npm run cy:run:allure && npm run allure:generate && npm run allure:open",
+    "merge:reports": "mochawesome-merge cypress/reports/*.json > mochawesome.json",
+    "generate:html": "marge mochawesome.json --reportDir cypress/reports"
   }
 }

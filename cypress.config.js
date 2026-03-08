@@ -4,6 +4,15 @@ module.exports = defineConfig({
   allowCypressEnv: true,
   projectId: "skncad",
 
+  reporter: "mochawesome",   // tambahkan ini
+  reporterOptions: {
+    reportDir: "cypress/reports",
+    overwrite: false,
+    html: false,
+    json: true
+  },
+
+
   e2e: {
     experimentalPromptCommand: true,
     setupNodeEvents(on, config) {
