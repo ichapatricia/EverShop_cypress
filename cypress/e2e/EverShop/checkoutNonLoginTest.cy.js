@@ -9,7 +9,7 @@ describe("TC03 - User melakukan checkout tanpa Login ",()=>{
     })
 
     context("TC03001 - User melakukan checkout tanpa Login",()=>{
-        it.only("User melakukan checkout",()=>{
+        it("User melakukan checkout",()=>{
             
             cy.wait(2000)
 
