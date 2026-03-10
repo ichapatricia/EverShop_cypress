@@ -114,39 +114,6 @@ describe("UI Component, Register, Filter",()=>{
             })
         })
 
-//====TC01009: Check Filter Sort By di Accesories===//
-        // context.only(" TC01009 - Sorting Filter Skenario",()=>{
-        //     it("Sort by Price",()=>{
-        //         // Sort By: Default, Price, Name
-        //         filter.applySort("Price")
-        //         cy.get('.product-price')
-        //         .then(($prices)=>{
-        //             const prices = [...$prices].map(el=>
-        //                 Number(el.innerText.replace('$',''))
-        //             )
-        //             const sorted = [...prices].sort((a,b)=>a-b)
-        //             expect(prices).to.deep.equal(sorted)
-        //         })
-        //     })
-        //     it('Sort by Name',()=>{
-        //         filter.applySort("Name")
-
-        //         cy.get('.product-name')
-        //             .then(($names) => {
-        //             const names = [...$names].map(el => el.innerText.trim())
-        //             const sorted = [...names].sort()
-        //             expect(names).to.deep.equal(sorted)
-
-        //         })
-        //     })
-        //     it('Sort by Default',()=>{
-        //         filter.applySort("Default")
-
-        //         cy.get('.product-name')
-        //             .first()
-        //             .should('contain','Stainless Steel Thermos')
-        //     })
-        // })
 
     })
 })
