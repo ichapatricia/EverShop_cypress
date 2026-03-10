@@ -62,6 +62,7 @@ describe("TC03 - User melakukan checkout tanpa Login ",()=>{
 
             //Shipping Method
             checkoutPage.selectShippingMethod() // 'Basic' atau ' Express'
+            //test webhook
 
             // Billing address
             checkoutPage.selectBillingSameAddress()
